@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haus Sonnenschein - Pflegeheim in Danewerk</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #4a4a4a;
+            background-color: #fefefe;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #4a4a4a;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            color: #6c757d;
+        }
+
+        .logo::before {
+            content: "☀️";
+            margin-right: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: #6c757d;
+            text-decoration: none;
+            font-weight: 300;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #495057;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            color: #495057;
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23ffffff" width="1200" height="600"/><g fill="%23f8f9fa" opacity="0.5"><circle cx="200" cy="150" r="120"/><circle cx="800" cy="400" r="80"/><circle cx="1000" cy="200" r="60"/></g></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 200;
+            color: #495057;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            color: #6c757d;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #6c757d;
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background: #495057;
+            box-shadow: 0 8px 25px rgba(108, 117, 125, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #495057;
+            margin-bottom: 1rem;
+            font-weight: 200;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #f8f9fa;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            color: #495057;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+
+        .feature-card p {
+            color: #6c757d;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* Verpflegung Section */
+        .verpflegung-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+        }
+
+        .meal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .meal-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+            border: 1px solid #f1f3f4;
+        }
+
+        .meal-card h3 {
+            color: #495057;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .meal-card h3::before {
+            margin-right: 1rem;
+            font-size: 2rem;
+        }
+
+        .meal-categories {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .meal-category {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .meal-category h4 {
+            color: #6c757d;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meal-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .meal-item {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #6c757d;
+            border: 1px solid #e9ecef;
+            font-weight: 300;
+        }
+
+        /* Meal Gallery */
+        .meal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+            border: 1px solid #f8f9fa;
+        }
+
+        .meal-gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .meal-gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .meal-gallery-item img {
+            width: 100%;
+            height: 200px; /* Fixed height for consistent gallery items */
+            object-fit: cover; /* Ensures images cover the area without distortion */
+            display: block;
+            border-radius: 15px;
+        }
+
+
+        /* Team Section */
+        .team-highlight {
+            background: linear-gradient(135deg, #495057 0%, #6c757d 100%);
+            color: white;
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .team-highlight h2 {
+            font-weight: 200;
+            margin-bottom: 1rem;
+        }
+
+        .team-highlight p {
+            font-weight: 300;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .team-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 200;
+            color: #f8f9fa;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Oase Section */
+        .oase-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            border: 1px solid #f8f9fa;
+        }
+
+        .oase-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .oase-image {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 1.1rem;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+
+        /* Career Section */
+        .career-section {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: white;
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+        }
+
+        .career-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .benefit {
+            background: rgba(255,255,255,0.08);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .benefit h3 {
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .benefit p {
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #f8f9fa;
+            border-radius: 30px;
+            padding: 4rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+            border: 1px solid #e9ecef;
+        }
+
+        .contact-info h3 {
+            color: #495057;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 1.5rem 0;
+        }
+
+        .contact-item span {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-item div {
+            color: #6c757d;
+            font-weight: 300;
+        }
+
+        .contact-item strong {
+            color: #495057;
+            font-weight: 400;
+        }
+
+        /* Footer */
+        footer {
+            background: #495057;
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            font-weight: 300;
+        }
+
+        footer a {
+            color: #f8f9fa;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .oase-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .meal-grid {
+                grid-template-columns: 1fr;
+            }
+            .meal-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust for smaller screens */
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card,
+        .verpflegung-section,
+        .oase-section,
+        .career-section { /* Removed .team-highlight from here as it will be controlled by JS for counter visibility */
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Counter Animation */
+        .counting {
+            display: inline-block;
+            min-width: 60px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Haus Sonnenschein</div>
+            <ul class="nav-links">
+                <li><a href="#home">Start</a></li>
+                <li><a href="#ueber-uns">Über uns</a></li>
+                <li><a href="#verpflegung">Verpflegung</a></li>
+                <li><a href="#pflegeoase">Pflegeoase</a></li>
+                <li><a href="#karriere">Karriere</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Haus Sonnenschein</h1>
+                <p>Liebevolle Pflege und Betreuung in familiärer Atmosphäre im Herzen von Danewerk</p>
+                <a href="#kontakt" class="cta-button">Jetzt informieren</a>
+            </div>
+        </section>
+
+        <section id="ueber-uns">
+            <div class="section-header">
+                <h2>Herzlich willkommen im Haus Sonnenschein</h2>
+                <p>Unser Pflegeheim in Danewerk bietet Bewohnern ein liebevolles Zuhause mit professioneller Betreuung und individueller Pflege.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏠</div>
+                    <h3>Familiäre Atmosphäre</h3>
+                    <p>In unserem Haus herrscht eine warme, familiäre Atmosphäre, in der sich unsere Bewohner rundum wohlfühlen und geborgen sind.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👩‍⚕️</div>
+                    <h3>Professionelle Pflege</h3>
+                    <p>Unser erfahrenes und motiviertes Pflegeteam sorgt rund um die Uhr für eine individuelle und liebevolle Betreuung jedes Bewohners.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🍽️</div>
+                    <h3>Eigene Küche</h3>
+                    <p>Frische, gesunde Mahlzeiten aus unserer eigenen Küche - täglich mit Liebe zubereitet von unserem erfahrenen Küchenteam.</p>
+                </div>
+            </div>
+
+            <div class="team-highlight">
+                <h2>Unser engagiertes Team</h2>
+                <p>Mit Herz, Kompetenz und langjähriger Erfahrung sorgen wir für das Wohlbefinden unserer Bewohner</p>
+                <div class="team-stats">
+                    <div class="stat">
+                        <div class="stat-number counting" data-target="43">0</div>
+                        <div class="stat-label">Bewohner</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number counting" data-target="25">0</div>
+                        <div class="stat-label">Pflegekräfte</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Betreuung</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="verpflegung">
+            <div class="section-header">
+                <h2>Unsere Küche & Verpflegung</h2>
+                <p>Frisch, regional und mit Liebe zubereitet - Genuss in jeder Mahlzeit</p>
+            </div>
+
+            <div class="verpflegung-section">
+                <h3 style="text-align: center; color: #495057; font-size: 2rem; margin-bottom: 2rem; font-weight: 200;">Unsere Mahlzeiten</h3>
+                
+                <div class="meal-grid">
+                    <div class="meal-card">
+                        <h3>🌅 Frühstück</h3>
+                        <div class="meal-categories">
+                            <div class="meal-category">
+                                <h4>Brot & Backwaren</h4>
+                                <div class="meal-items">
+                                    <span class="meal-item">Verschiedene Brotsorten</span>
+                                    <span class="meal-item">Frische Brötchen</span>
+                                    <span class="meal-item">Knäckebrot</span>
+                                    <span class="meal-item">Toast</span>
+                                </div>
+                            </div>
+                            <div class="meal-category">
+                                <h4>Aufschnitt & Beläge</h4>
+                                <div class="meal-items">
+                                    <span class="meal-item">Verschiedene Käsesorten</span>
+                                    <span class="meal-item">Aufschnitt</span>
+                                    <span class="meal-item">Frischkäse</span>
+                                    <span class="meal-item">Marmelade</span>
+                                    <span class="meal-item">Aufstriche</span>
+                                </div>
+                            </div>
+                            <div class="meal-category">
+                                <h4>Cerealien & Milchprodukte</h4>
+                                <div class="meal-items">
+                                    <span class="meal-item">Müsli</span>
+                                    <span class="meal-item">Cornflakes</span>
+                                    <span class="meal-item">Quark</span>
+                                    <span class="meal-item">Joghurt</span>
+                                    <span class="meal-item">Milchsuppen</span>
+                                </div>
+                            </div>
+                            <div class="meal-category">
+                                <h4>Getränke</h4>
+                                <div class="meal-items">
+                                    <span class="meal-item">Kaffee</span>
+                                    <span class="meal-item">Verschiedene Teesorten</span>
+                                    <span class="meal-item">Kakao</span>
+                                    <span class="meal-item">Wasser</span>
+                                    <span class="meal-item">Säfte</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="meal-card">
+                        <h3>🌙 Abendessen</h3>
+                        <div class="meal-categories">
+                            <div class="meal-category">
+                                <h4>Kalte Platten</h4>
+                                <div class="meal-items">
+                                    <span class="meal-item">Liebevoll gestaltete Platten</span>
+                                    <span class="meal-item">Verschiedene Brotsorten</span>
+                                    <span class="meal-item">Aufschnitt & Käse</span>
+                                    <span class="meal-item">Frischkäse-Variationen</span>
+                                </div>
+                            </div>
+                            <div class="meal-category">
+                                <h4>Frisches Gemüse</h4>
+                                <div class="meal-items">
+                                    <span class="meal-item">Gurken</span>
+                                    <span class="meal-item">Tomaten</span>
+                                    <span class="meal-item">Radieschen</span>
+                                    <span class="meal-item">Paprika</span>
+                                    <span class="meal-item">Saisonales Gemüse</span>
+                                </div>
+                            </div>
+                            <div class="meal-category">
+                                <h4>Salate & Beilagen</h4>
+                                <div class="meal-items">
+                                    <span class="meal-item">Gemischte Salate</span>
+                                    <span class="meal-item">Kartoffelsalat</span>
+                                    <span class="meal-item">Gurkensalat</span>
+                                    <span class="meal-item">Gekochte Eier</span>
+                                    <span class="meal-item">Eingelegtes</span>
+                                </div>
+                            </div>
+                            <div class="meal-category">
+                                <h4>Warme Getränke</h4>
+                                <div class="meal-items">
+                                    <span class="meal-item">Kräutertees</span>
+                                    <span class="meal-item">Warme Milch</span>
+                                    <span class="meal-item">Früchtetee</span>
+                                    <span class="meal-item">Kamillentee</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: white; border-radius: 20px; padding: 2.5rem; margin-top: 3rem; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.04);">
+                    <h3 style="color: #495057; margin-bottom: 2rem; font-weight: 300;">🍰 Kaffeezeit & Zwischenmahlzeiten</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 15px;">
+                            <h4 style="color: #6c757d; margin-bottom: 1rem; font-weight: 400;">Täglich frisch</h4>
+                            <p style="color: #6c757d; font-weight: 300;">Selbstgebackener Kuchen aus unserer eigenen Küche</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 15px;">
+                            <h4 style="color: #6c757d; margin-bottom: 1rem; font-weight: 400;">Abwechselnd</h4>
+                            <p style="color: #6c757d; font-weight: 300;">Hausgemachte Kekse und saisonales Gebäck</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 15px;">
+                            <h4 style="color: #6c757d; margin-bottom: 1rem; font-weight: 400;">Individuell</h4>
+                            <p style="color: #6c757d; font-weight: 300;">Zwischenmahlzeiten nach persönlichen Wünschen</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="text-align: center; color: #495057; font-size: 2rem; margin-top: 4rem; margin-bottom: 2rem; font-weight: 200;">Impressionen aus unserer Küche</h3>
+                <div class="meal-gallery">
+                    <div class="meal-gallery-item">
+                        <img src="images/hauptgericht.jpg" alt="Teller mit Hauptgericht: Fleisch, Kartoffelbrei und Soße">
+                    </div>
+                    <div class="meal-gallery-item">
+                        <img src="images/nachtisch_toertchen.jpg" alt="Kleine Törtchen mit Creme, Beeren und Minze">
+                    </div>
+                    <div class="meal-gallery-item">
+                        <img src="images/dips_fladenbrot.jpg" alt="Mehrere Teller mit verschiedenen Dips und Fladenbrot">
+                    </div>
+                    <div class="meal-gallery-item">
+                        <img src="images/abendbrot_brote.jpg" alt="Teller mit verschiedenen belegten Broten und Sandwiches">
+                    </div>
+                    <div class="meal-gallery-item">
+                        <img src="images/panna_cotta.jpg" alt="Weiße Panna Cotta mit Schokoladensauce und Früchten">
+                    </div>
+                    <div class="meal-gallery-item">
+                        <img src="images/quarkdessert.jpg" alt="Quarkdessert mit Fruchtsauce und Blaubeeren">
+                    </div>
+                    <div class="meal-gallery-item">
+                        <img src="images/desserts_glaeser.jpg" alt="Mehrere Gläser mit Joghurt oder Dessert, fertig zum Servieren">
+                    </div>
+                    <div class="meal-gallery-item">
+                        <img src="images/panna_cotta_orange.jpg" alt="Weißes Dessert mit Orangenstückchen und Nüssen auf Erdbeerspiegel">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pflegeoase">
+            <div class="section-header">
+                <h2>Unsere Pflegeoase</h2>
+                <p>Ein besonderer Ort für Menschen mit Demenz - Geborgenheit in gemeinschaftlicher Atmosphäre</p>
+            </div>
+
+            <div class="oase-section">
+                <div class="oase-content">
+                    <div>
+                        <h3 style="color: #495057; margin-bottom: 1.5rem; font-weight: 300;">Was ist eine Pflegeoase?</h3>
+                        <p style="margin-bottom: 1.5rem; color: #6c757d; font-weight: 300;">Unsere Pflegeoase ist ein speziell gestalteter Wohnbereich für Menschen mit schwerer Demenz. Hier leben mehrere Bewohner in einem großen, gemeinschaftlichen Raum zusammen und erhalten rund um die Uhr liebevolle Betreuung.</p>
+                        
+                        <h4 style="color: #495057; margin: 2rem 0 1rem 0; font-weight: 400;">Unsere Besonderheiten:</h4>
+                        <ul style="list-style: none; padding-left: 0; color: #6c757d; font-weight: 300;">
+                            <li style="margin: 1rem 0; display: flex; align-items: center;">
+                                <span style="color: #6c757d; margin-right: 1rem;">✓</span>
+                                Gemeinschaftliches Wohnen in beruhigender Atmosphäre
+                            </li>
+                            <li style="margin: 1rem 0; display: flex; align-items: center;">
+                                <span style="color: #6c757d; margin-right: 1rem;">✓</span>
+                                Kontinuierliche Betreuung durch geschultes Personal
+                            </li>
+                            <li style="margin: 1rem 0; display: flex; align-items: center;">
+                                <span style="color: #6c757d; margin-right: 1rem;">✓</span>
+                                Individuelle Pflege trotz Gemeinschaftskonzept
+                            </li>
+                            <li style="margin: 1rem 0; display: flex; align-items: center;">
+                                <span style="color: #6c757d; margin-right: 1rem;">✓</span>
+                                Sicherheit und Geborgenheit für schwer Demenzkranke
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="oase-image">
+                        <div>
+                            <p style="margin-bottom: 1rem;">🌸 Pflegeoase 🌸</p>
+                            <p style="font-size: 0.9rem; opacity: 0.7;">[Hier wird später Ihr Foto der Pflegeoase eingefügt]</p>
+                            <p style="font-size: 0.8rem; margin-top: 1rem; opacity: 0.6;">Liebevolle Betreuung in gemeinschaftlicher Atmosphäre</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="karriere">
+            <div class="career-section">
+                <h2 style="font-weight: 200;">Werde Teil unseres Teams!</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; font-weight: 300;">Suchst du einen erfüllenden Job in der Pflege? Bei uns findest du mehr als nur einen Arbeitsplatz.</p>
+
+                <div class="career-benefits">
+                    <div class="benefit">
+                        <h3>💼 Sichere Anstellung</h3>
+                        <p>Unbefristete Verträge und faire Bezahlung in einem zukunftssicheren Beruf</p>
+                    </div>
+                    <div class="benefit">
+                        <h3>🎓 Weiterbildung</h3>
+                        <p>Regelmäßige Fortbildungen und Unterstützung bei deiner beruflichen Entwicklung</p>
+                    </div>
+                    <div class="benefit">
+                        <h3>👥 Tolles Team</h3>
+                        <p>Arbeite mit motivierten Kollegen in einer unterstützenden, familiären Atmosphäre</p>
+                    </div>
+                    <div class="benefit">
+                        <h3>⚖️ Work-Life-Balance</h3>
+                        <p>Flexible Arbeitszeiten und faire Dienstplangestaltung für deine Lebensqualität</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem;">
+                    <h3 style="color: white; font-weight: 300; margin-bottom: 1.5rem;">Interesse?</h3>
+                    <a href="#kontakt" class="cta-button" style="background: white; color: #495057; box-shadow: 0 4px 15px rgba(255,255,255,0.2);">Jetzt bewerben</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontakt" class="contact-section">
+            <div class="section-header">
+                <h2>Kontaktieren Sie uns</h2>
+                <p>Wir sind gerne für Sie da! Melden Sie sich bei Fragen oder zur Vereinbarung eines Besichtigungstermins.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Haus Sonnenschein</h3>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <div>
+                            <strong>Adresse:</strong><br>
+                            Pflegeheim Sonnenschein<br>
+                            Hauptstraße 123<br>
+                            24869 Danewerk
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <div>
+                            <strong>Telefon:</strong><br>
+                            <a href="tel:+494621987654" style="color: #6c757d; text-decoration: none;">+49 4621 987654</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <div>
+                            <strong>E-Mail:</strong><br>
+                            <a href="mailto:info@haus-sonnenschein.de" style="color: #6c757d; text-decoration: none;">info@haus-sonnenschein.de</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <h3>Öffnungszeiten</h3>
+                    <div class="contact-item">
+                        <span>⏰</span>
+                        <div>
+                            <strong>Verwaltung:</strong><br>
+                            Montag - Freitag: 09:00 - 16:00 Uhr<br>
+                            Besichtigungstermine nach Vereinbarung
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span>✨</span>
+                        <div>
+                            Unser Pflegepersonal ist rund um die Uhr für Sie da.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Haus Sonnenschein. Alle Rechte vorbehalten. | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+    </footer>
+
+    <script>
+        // Function to start the counting animation for a single element
+        function animateCount(element) {
+            const target = parseInt(element.getAttribute('data-target'), 10);
+            const duration = 3000; // 3 seconds
+            let start = 0;
+            const increment = target / (duration / 10); // Calculate increment for smoother animation
+
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 10); // Update every 10ms
+        }
+
+        // Use Intersection Observer to trigger animation when section is visible
+        const teamHighlight = document.querySelector('.team-highlight');
+        const counters = teamHighlight.querySelectorAll('.counting');
+        let hasAnimated = false; // Flag to ensure animation runs only once
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasAnimated) {
+                    counters.forEach(counter => {
+                        animateCount(counter);
+                    });
+                    hasAnimated = true; // Set flag to true after animation
+                    observer.unobserve(entry.target); // Stop observing after animation
+                }
+            });
+        }, {
+            threshold: 0.5 // Trigger when at least 50% of the element is visible
+        });
+
+        observer.observe(teamHighlight);
+    </script>
+</body>
+</html>
